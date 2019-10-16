@@ -47,13 +47,11 @@ import com.bilibili.magicasakura.widgets.TintImageView;
 import com.bilibili.magicasakurademo.dialog.CardPickerDialog;
 import com.bilibili.magicasakurademo.dialog.ProgressCheckDialog;
 import com.bilibili.magicasakurademo.dialog.ProgressStyleDialog;
-import com.bilibili.magicasakurademo.utils.SnackAnimationUtil;
 import com.bilibili.magicasakurademo.utils.ThemeHelper;
 import com.bilibili.magicasakurademo.widgets.KeyEditText;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity implements CardPickerDialog.ClickListener {
@@ -157,24 +155,9 @@ public class MainActivity extends AppCompatActivity implements CardPickerDialog.
                         }
                     }
             );
-            View view = findViewById(R.id.snack_layout);
-            if (view != null) {
-                TextView textView = (TextView) view.findViewById(R.id.content);
-                textView.setText(getSnackContent(currentTheme));
-                SnackAnimationUtil.with(this, R.anim.snack_in, R.anim.snack_out)
-                        .setDismissDelayTime(1000)
-                        .setTarget(view)
-                        .play();
-            }
         }
     }
 
-    private String getSnackContent(int current) {
-        Random random = new Random();
-        random.setSeed(System.currentTimeMillis());
-        return getResources().getString(getResources().getIdentifier(
-                "magicasrkura_prompt_" + random.nextInt(3), "string", getPackageName())) + ThemeHelper.getName(current);
-    }
 
     public static class Adapter extends RecyclerView.Adapter<ViewHolder> {
         List<Integer> viewHolderTypes = new ArrayList<>();
